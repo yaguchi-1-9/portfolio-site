@@ -1,23 +1,36 @@
-version: "3"
-
+# 各サービスを定義
 services:
+    # webサービスに必要な各コンテナを定義
     web:
+        # Docker Hubから最新の公式Nginxイメージを取得
+        # imageキーは既存のDockerイメージを使用してコンテナを作成する場合に使用
         image: nginx:latest
+        # このサービスのコンテナ名を指定
         container_name: nginx
+        # 8080はホストマシンのポート
+        # 80はnginxコンテナのポート
         ports:
             - "8080:80"
+        # 同期設定
         volumes:
             - ./nginx-conf:/etc/nginx/conf.d
             - ./public:/var/www/public
+        # phpサービスに依存
         depends_on:
             - php
+        # app-networkネットワークに接続
         networks:
             - app-network
 
     php:
+        # Dockerfileを使用して新しいイメージをビルドするように指示
+        # buildキーは新しいDockerイメージをビルドする場合に使用
         build:
+            # Dockerイメージのビルドに使用されるファイルを指定するディレクトリパス
             context: .
+            # Dockerfileの名前を指定
             dockerfile: Dockerfile
+        image: portfolio-site-php:latest
         container_name: php
         volumes:
             - ./public:/var/www/public
