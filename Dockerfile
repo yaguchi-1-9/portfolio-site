@@ -38,6 +38,8 @@ COPY . /var/www
 # Composerの依存関係のインストール
 RUN composer install
 
-# Laravelの設定
-ENV APP_ENV production
-ENV APP_DEBUG true
+# Dockerコンテナ外からの接続を受け入れる
+CMD php artisan serve --host=0.0.0.0 --port=8080
+
+# Dockerコンテナがリッスンするポートを宣言
+EXPOSE 8080
