@@ -20,7 +20,8 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libonig-dev \
-    libzip-dev
+    libzip-dev \
+    net-tools
 
 # キャッシュクリア
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
