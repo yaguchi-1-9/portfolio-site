@@ -38,8 +38,5 @@ COPY . /var/www
 # Composerの依存関係のインストール
 RUN composer install
 
-# Dockerコンテナ外からの接続を受け入れる
-CMD php artisan serve --host=0.0.0.0 --port=8080
-
 # Dockerコンテナがリッスンするポートを宣言
 EXPOSE 8080
