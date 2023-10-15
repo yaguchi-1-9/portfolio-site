@@ -6,6 +6,7 @@ COPY composer.lock composer.json /var/www/
 
 # 他の必要なパッケージのインストール
 RUN apt-get update && apt-get install -y \
+    procps \
     nginx \
     build-essential \
     libpng-dev \
