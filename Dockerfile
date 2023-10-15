@@ -37,6 +37,3 @@ COPY . /var/www
 
 # Composerの依存関係のインストール
 RUN composer install
-
-# Dockerコンテナがリッスンするポートを宣言
-EXPOSE 8080
