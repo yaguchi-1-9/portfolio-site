@@ -6,6 +6,7 @@ COPY composer.lock composer.json /var/www/
 
 # 他の必要なパッケージのインストール
 RUN apt-get update && apt-get install -y \
+    apt-utils \
     procps \
     nginx \
     build-essential \
