@@ -6,6 +6,3 @@ build:
 run:
   web: php-fpm
   nginx: nginx
-
-run:
-  web: ./start.sh
