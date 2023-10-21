@@ -8,4 +8,4 @@ release:
     - ./deployment-tasks.sh
 
 run:
-  web: ./start.sh
+  web: nginx && exec php-fpm
