@@ -14,7 +14,7 @@ services:
         # 8080はホストマシンのポート
         # 80はnginxコンテナのポート
         ports:
-            - "8080:8080"
+            - "8080:80"
         # 同期設定
         volumes:
             - ./nginx-conf:/etc/nginx/conf.d
