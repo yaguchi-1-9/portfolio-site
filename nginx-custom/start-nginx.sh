@@ -8,7 +8,7 @@ echo ""
 echo ""
 
 # 環境変数PORTを使用して、Nginxの設定を動的に書き換える
-sed -i 's/listen \$PORT;/listen '"$PORT"';/g' /etc/nginx/conf.d/default.conf
+sed -i -e "s/listen 80/listen $PORT/g" /etc/nginx/conf.d/default.conf
 
 echo "Updated Nginx configuration:"
 cat /etc/nginx/conf.d/default.conf
