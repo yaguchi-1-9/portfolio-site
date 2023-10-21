@@ -14,4 +14,4 @@ COPY ./start-nginx.sh /usr/local/bin/start-nginx.sh
 RUN chmod +x /usr/local/bin/start-nginx.sh
 
 # スタートアップスクリプトを実行
-CMD ["/usr/local/bin/start.sh"]
+CMD ["/usr/local/bin/start-nginx.sh"]
