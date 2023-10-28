@@ -1,20 +1,54 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポートフォリオ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-@section('content')
-<div class="container">
-    <h1>My Portfolio</h1>
+<header>
+    <h1>ポートフォリオ</h1>
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-    @foreach($portfolios as $portfolio)
-    <div class="portfolio-item">
-        <h2>{{ $portfolio->title }}</h2>
-        <p>{{ $portfolio->description }}</p>
-        @if($portfolio->image)
-            <img src="{{ asset('storage/' . $portfolio->image) }}" alt="{{ $portfolio->title }}">
-        @endif
-        @if($portfolio->link)
-            <a href="{{ $portfolio->link }}">Project Link</a>
-        @endif
+<section id="about">
+    <h2>About Me</h2>
+    <p>こんにちは</p>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+
+    <div class="project-card">
+        <h3>Project 1</h3>
+        <p>プロジェクト1の説明。これは、...</p>
+        <a href="#">プロジェクトを見る</a>
     </div>
-    @endforeach
-</div>
-@endsection
+
+    <div class="project-card">
+        <h3>Project 2</h3>
+        <p>プロジェクト2の説明。このプロジェクトでは、...</p>
+        <a href="#">プロジェクトを見る</a>
+    </div>
+
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>連絡を取りたい場合は、<a href="mailto:hoge@example.com">taro@example.com</a> までメールを送るか、<a href="#">Twitter</a>、<a href="#">LinkedIn</a> などでフォローしてください。</p>
+</section>
+
+<footer>
+    <p>&copy; 2023 屋口正鷹</p>
+</footer>
+
+</body>
+</html>
