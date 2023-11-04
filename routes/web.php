@@ -14,8 +14,6 @@ use App\Http\Controllers\PortfolioController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'portfolio');
 
 Route::resource('portfolio', PortfolioController::class);
