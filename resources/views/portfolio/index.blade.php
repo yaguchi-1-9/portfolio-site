@@ -22,8 +22,8 @@
 <section id="about">
     <h2>About Me</h2>
     <p>こんにちは！</p>
-    <p>ここは新卒1年目のエンジニアの取り組みを紹介ページです</p>
-    <p>生暖かい目で見てください</p>
+    <p>ここは新卒1年目のエンジニアの取り組みを紹介ページです。</p>
+    <p>拙い点も多いですが、生暖かい目で見てください。</p>
 </section>
 
 <section id="projects">
@@ -45,7 +45,7 @@
 
 <section id="contact">
     <h2>Contact</h2>
-    <p>連絡を取りたい場合は、<a href="mailto:hoge@example.com">test@example.com</a> までメールを送るか、<a href="#">Twitter</a>、<a href="#">LinkedIn</a> などでフォローしてください。</p>
+    <p>連絡を取りたい場合は、<a href="https://twitter.com/9BeWuMebzLPKwKY">Twitter</a>からお願いします。</p>
 </section>
 
 <footer>
