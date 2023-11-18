@@ -6,6 +6,9 @@
     <title>ポートフォリオ</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    
+    <!--iOSのSafari用-->
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">　
 </head>
 <body>
 
