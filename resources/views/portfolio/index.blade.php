@@ -8,7 +8,8 @@
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
     <!--iOSのSafari用-->
-    <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}" sizes="180x180">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-startup-image" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
 
