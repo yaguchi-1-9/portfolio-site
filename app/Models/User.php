@@ -42,4 +42,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->created_at = $model->freshTimestamp();
+        });
+
+        static::updating(function ($model) {
+            $model->updated_at = $model->freshTimestamp();
+        });
+    }
 }
