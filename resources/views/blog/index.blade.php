@@ -21,7 +21,7 @@
 
     <!-- フッター -->
     <footer>
-        <a href="{{ route('portfolio') }}">ポートフォリオ</a>
+        <a href="{{ route('portfolio') }}">My Portfolio</a>
     </footer>
 </body>
 </html>
