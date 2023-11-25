@@ -17,7 +17,7 @@ services:
             - "8080:80"
         # 同期設定
         volumes:
-            - ./nginx-conf:/etc/nginx/conf.d
+            - ./nginx-conf/default.conf:/etc/nginx/conf.d/default.conf
             - ./public:/var/www/public
         # phpサービスに依存
         depends_on:
@@ -42,17 +42,16 @@ services:
             - app-network
 
     db:
-        # Docker Hubから最新の公式Mysqlイメージを取得
+        # Docker Hubから最新の公式Postgresイメージを取得
         # imageキーは既存のDockerイメージを使用してコンテナを作成する場合に使用
-        image: mysql:5.7
-        container_name: mysql
+        image: postgres:latest
+        container_name: postgres
         environment:
-            MYSQL_ROOT_PASSWORD: rootpassword
-            MYSQL_DATABASE: dbname
-            MYSQL_USER: dbuser
-            MYSQL_PASSWORD: dbpassword
+            POSTGRES_PASSWORD: your_password
+            POSTGRES_DB: dbname
+            POSTGRES_USER: dbuser
         volumes:
-            - db-data:/var/lib/mysql
+            - db-data:/var/lib/postgresql/data
         networks:
             - app-network
 
