@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\BlogPostsController;
+use App\Http\Controllers\BlogContentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +19,4 @@ Route::redirect('/', 'portfolio');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
 
-Route::get('/blog', [BlogPostsController::class, 'index'])->name('blog');
+Route::get('/blog', [BlogContentsController::class, 'index'])->name('blog');
