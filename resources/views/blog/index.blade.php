@@ -10,7 +10,7 @@
 <body>
     <h1>ブログ記事一覧</h1>
     <div>
-        @foreach ($blogPosts as $post)
+        @foreach ($blogContents as $post)
             <div style="margin-bottom: 20px;">
                 <h2>{{ $post->title }}</h2>
                 <p>{{ $post->description }}</p>
