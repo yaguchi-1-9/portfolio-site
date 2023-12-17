@@ -27,6 +27,8 @@ services:
             - app-network
 
     php:
+        environment:
+            APP_ENV_FILE: .env.dev
         # Dockerfileを使用して新しいイメージをビルドするように指示
         # buildキーは新しいDockerイメージをビルドする場合に使用
         build:
@@ -50,8 +52,6 @@ services:
             TZ: Asia/Tokyo
             MYSQL_ROOT_PASSWORD: td2S3uI1x@yn6e
             MYSQL_DATABASE: blog
-            MYSQL_USER: yaguchi
-            MYSQL_PASSWORD: 
         volumes:
             - db-data:/var/lib/mysql
         networks:
