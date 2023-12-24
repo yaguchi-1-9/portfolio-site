@@ -18,5 +18,6 @@ use App\Http\Controllers\BlogContentsController;
 Route::redirect('/', 'portfolio');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
-
-Route::get('/blog', [BlogContentsController::class, 'index'])->name('blog');
+Route::get('/blog', [BlogContentsController::class, 'index'])->name('blog_index');
+Route::post('/blog', [BlogContentsController::class, 'store'])->name('blog_store');
+Route::get('/blog/create', [BlogContentsController::class, 'create'])->name('blog_create');

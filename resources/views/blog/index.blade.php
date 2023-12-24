@@ -10,6 +10,7 @@
 <body>
     <h1>ブログ記事一覧</h1>
     <div>
+        <a href="{{ route('blog_create') }}" class="btn btn-primary">新規作成</a>
         @foreach ($blogContents as $post)
             <div style="margin-bottom: 20px;">
                 <h2>{{ $post->title }}</h2>
