@@ -4,9 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
+    // 新規登録フォームを表示
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+    // 新規登録処理
+    public function register(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        User::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect('auth.login');
+    }
+
     // ログインフォームを表示
     public function showLoginForm()
     {

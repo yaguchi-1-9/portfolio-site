@@ -29,6 +29,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
     // ログアウト処理
     Route::post('/logout', 'logout')->name('logout');
+    // 新規登録ページ
+    Route::get('/register', 'showRegistrationForm')->name('register');
+    // 新規登録処理
+    Route::post('/register', 'register');
 });
 
 // ブログ関連
