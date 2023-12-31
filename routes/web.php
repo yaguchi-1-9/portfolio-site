@@ -38,9 +38,9 @@ Route::controller(AuthController::class)->group(function () {
 // ブログ関連
 Route::prefix('/blog')->group(function () {
     // ブログ一覧ページ
-    Route::get('/', [BlogContentsController::class, 'index'])->name('blog_index');
+    Route::get('/', [BlogContentsController::class, 'index'])->name('blog.index');
     // ブログ投稿処理
-    Route::post('/store', [BlogContentsController::class, 'store'])->name('blog_store');
+    Route::post('/store', [BlogContentsController::class, 'store'])->name('blog.store');
     // ブログ投稿ページ
-    Route::get('/create', [BlogContentsController::class, 'create'])->name('blog_create');
+    Route::get('/create', [BlogContentsController::class, 'create'])->name('blog.create');
 });

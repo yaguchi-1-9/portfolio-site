@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>新規ブログ投稿</h1>
-    <form action="{{ route('blog_store') }}" method="post">
+    <form action="{{ route('blog.store') }}" method="post">
         @csrf
         <label for="title">タイトル:</label>
         <input type="text" id="title" name="title">

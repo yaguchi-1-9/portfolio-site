@@ -26,6 +26,6 @@ class BlogContentsController extends Controller
         $post->user_id = auth()->id();
         $post->save();
     
-        return redirect('/blog_index');
+        return redirect('/blog.index');
     }
 }

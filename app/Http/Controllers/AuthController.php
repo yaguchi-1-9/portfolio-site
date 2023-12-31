@@ -42,7 +42,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('blog_index');
+            return redirect()->intended('blog.index');
         }
 
         return back()->withErrors([
@@ -58,6 +58,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/blog_index');
+        return redirect('/blog.index');
     }
 }
