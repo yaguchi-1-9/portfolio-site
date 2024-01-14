@@ -28,7 +28,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect('auth.login');
+        return redirect('login');
     }
 
     // ログインフォームを表示

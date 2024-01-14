@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>ログイン</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
@@ -17,7 +16,7 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="email">E-Mail Address</label>
+                                <label for="email">メールアドレス</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -28,7 +27,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Password</label>
+                                <label for="password">パスワード</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
@@ -36,6 +35,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <div class="form-group">
+                                    <label for="password-confirm">パスワード確認</label>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary">
