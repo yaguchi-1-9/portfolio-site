@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\BlogContentsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmailVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout', 'logout')->name('logout');
     // 新規登録ページ
     Route::get('/register', 'showRegistrationForm')->name('register');
+    // メールアドレス確認ページ
+    Route::get('/verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
     // 新規登録処理
     Route::post('/register', 'register');
 });

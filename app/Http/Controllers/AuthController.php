@@ -8,18 +8,29 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\TempRegisteredUser;
 use App\Models\RegisteredUser;
 use Illuminate\Support\Str;
+use App\Mail\VerifyEmail;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
-    // 新規登録フォームを表示
-    public function showRegistrationForm()
+    /**
+     * 新規登録フォームを表示
+     *
+     * @return void
+     */
+    public function showRegistrationForm() : View
     {
         return view('auth.register');
     }
 
-    // 新規登録処理
-    public function register(Request $request)
+    /**
+     * 新規登録処理
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function register(Request $request) 
     {
         $request->validate([
             'email' => 'required|email|max:255',
@@ -32,16 +43,13 @@ class AuthController extends Controller
             'token' => Str::random(60),
         ]);
 
-        // 本人確認メールの送信
-        Mail::send('emails.verify', ['token' => $tempUser->token], function ($message) use ($tempUser) {
-            $message->to($tempUser->email);
-            $message->subject('Verify your email address');
-        });
+        // 登録したユーザーに確認メールを送信
+        Mail::to($tempUser->email)->send(new VerifyEmail($tempUser));
 
         return redirect('login')->with('status', '認証メールを送信しました。');
     }
 
-    public function verify($token)
+    public function verify($token) : void
     {
         $tempUser = TempRegisteredUser::where('token', $token)->firstOrFail();
 
@@ -49,8 +57,6 @@ class AuthController extends Controller
             'email' => $tempUser->email,
             'password' => $tempUser->password,
         ]);
-
-        return redirect('login')->with('status', '認証が完了しました。');;
     }
 
     // ログインフォームを表示
@@ -69,7 +75,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'メールアドレスかパスワードが間違っています。',
         ]);
     }
 
