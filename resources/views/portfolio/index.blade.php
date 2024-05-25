@@ -73,7 +73,7 @@
 </section>
 
 <footer>
-    <p>&copy; 2023 屋口</p>
+    <p>&copy; {{ date('Y') }} 屋口</p>
 </footer>
 
 </body>
