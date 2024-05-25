@@ -9,23 +9,14 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    /**
-     * 新規登録フォームを表示
-     *
-     * @return void
-     */
-    public function showRegistrationForm() : View
+    // 新規登録フォームを表示
+    public function showRegistrationForm()
     {
         return view('auth.register');
     }
 
-    /**
-     * 新規登録処理
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function register(Request $request) 
+    // 新規登録処理
+    public function register(Request $request)
     {
         $request->validate([
             'email' => 'required|email|max:255',
@@ -55,7 +46,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'メールアドレスかパスワードが間違っています。',
+            'email' => 'The provided credentials do not match our records.',
         ]);
     }
 
