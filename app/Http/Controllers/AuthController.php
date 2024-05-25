@@ -5,12 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\TempRegisteredUser;
-use App\Models\RegisteredUser;
-use Illuminate\Support\Str;
-use App\Mail\VerifyEmail;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -37,26 +32,12 @@ class AuthController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
 
-        $tempUser = TempRegisteredUser::create([
+        User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'token' => Str::random(60),
         ]);
 
-        // 登録したユーザーに確認メールを送信
-        Mail::to($tempUser->email)->send(new VerifyEmail($tempUser));
-
-        return redirect('login')->with('status', '認証メールを送信しました。');
-    }
-
-    public function verify($token) : void
-    {
-        $tempUser = TempRegisteredUser::where('token', $token)->firstOrFail();
-
-        RegisteredUser::create([
-            'email' => $tempUser->email,
-            'password' => $tempUser->password,
-        ]);
+        return redirect('login');
     }
 
     // ログインフォームを表示
@@ -65,7 +46,6 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // ログイン処理
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
