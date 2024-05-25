@@ -1,25 +1,35 @@
+# ベースイメージとして公式のPHPイメージを使用
 FROM php:8.1-fpm
 
-# PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql
+# 必要なパッケージをインストール
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    unzip \
+    git \
+    curl
 
-# Composer のインストール
+# PHP拡張モジュールのインストール
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install pdo_mysql
+
+# Composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# ワーキングディレクトリの設定
+# アプリケーションディレクトリの作成
 WORKDIR /var/www
 
-# Laravel アプリケーションのコピー
+# ホストのアプリケーションファイルをコンテナにコピー
 COPY . /var/www
 
-# Composer dependencies のインストール
-RUN composer install --optimize-autoloader --no-dev
-
-# 権限の設定
-RUN chown -R www-data:www-data /var/www
+# Composerで依存関係をインストール
+RUN composer install
 
 # ポートの公開
 EXPOSE 9000
 
-# PHP-FPM の実行
+# PHP-FPMの起動
 CMD ["php-fpm"]
