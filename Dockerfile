@@ -26,15 +26,6 @@ COPY . /var/www/html
 # Composerで依存関係をインストール
 RUN composer install --no-dev --optimize-autoloader
 
-# カスタムApache設定ファイルを配置
-COPY ./apache2.conf /etc/apache2/sites-available/000-custom.conf
-
-# 不要なデフォルト設定を無効にする
-RUN a2dissite 000-default.conf
-
-# カスタム設定を有効にする
-RUN a2ensite 000-custom.conf
-
 # ポート80を公開
 EXPOSE 80
 
