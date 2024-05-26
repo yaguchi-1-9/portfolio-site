@@ -28,8 +28,5 @@ COPY . /var/www
 # Composerで依存関係をインストール
 RUN composer install
 
-# ポートの公開
-EXPOSE 9000
-
 # PHP-FPMの起動
 CMD ["php-fpm"]
