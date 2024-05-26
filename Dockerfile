@@ -15,7 +15,7 @@ RUN docker-php-ext-install pdo_mysql
 RUN a2enmod rewrite
 
 # MPM設定の修正: 不要なMPMモジュールを無効
-RUN a2dismod mpm_event mpm_worker worker
+RUN a2dismod mpm_event mpm_worker
 
 # Composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
