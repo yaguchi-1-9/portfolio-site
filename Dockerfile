@@ -24,7 +24,7 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 # Composerで依存関係をインストール
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
 
 # カスタムApache設定ファイルを配置
 COPY ./apache2.conf /etc/apache2/sites-available/000-custom.conf
