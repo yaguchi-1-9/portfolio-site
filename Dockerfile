@@ -14,8 +14,8 @@ RUN docker-php-ext-install pdo_mysql
 # Apacheのmod_rewriteを有効にする
 RUN a2enmod rewrite
 
-# MPM設定の修正: preforkを有効にし、他のMPMを無効にする
-RUN a2dismod mpm_event mpm_worker && a2enmod mpm_prefork
+# MPM設定の修正: MPMを無効にする
+RUN a2dismod mpm_event mpm_worker mpm_prefork
 
 # Composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
