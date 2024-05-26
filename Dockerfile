@@ -15,7 +15,7 @@ RUN docker-php-ext-install pdo_mysql
 RUN a2enmod rewrite
 
 # MPM設定の修正: 不要なMPMモジュールを無効
-RUN a2dismod mpm_event mpm_worker
+RUN a2dismod mpm_event mpm_worker worker
 
 # Composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -28,15 +28,6 @@ COPY . /var/www/html
 
 # Composerで依存関係をインストール
 RUN composer install --no-dev --optimize-autoloader
-
-# カスタムApache設定ファイルを配置
-COPY ./apache2.conf /etc/apache2/sites-available/000-custom.conf
-
-# 不要なデフォルト設定を無効にする
-RUN a2dissite 000-default.conf
-
-# カスタム設定を有効にする
-RUN a2ensite 000-custom.conf
 
 # ポート80を公開
 EXPOSE 80
